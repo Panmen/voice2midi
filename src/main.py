@@ -1,12 +1,33 @@
+#!/usr/bin/env python3
+
+import argparse
 from util import *
 
-DEBUG = True
+###########
+# Constants
+###########
 
-INPUT_FILE = "../wavs/notes.wav"
 FRAME_SIZE_SEC = 40e-3
 FRAME_STRIDE_SEC = FRAME_SIZE_SEC / 8
 POWER_THRES = 0.01
-OUTPUT_FILE = "song.mid"
+
+###############################
+# Step 0: Get the cli arguments
+###############################
+
+parser = argparse.ArgumentParser(description="Convert wav files of human voice to midi.")
+
+parser.add_argument("input_file", type=str, help="The path to the wav file")
+parser.add_argument("-o", type=str, help="The path to the output file (default: out.mid)", default="out.mid")
+parser.add_argument("-d", "--debug", action="store_true", help="Debug flag. If it is set then the cepstrum is plotted.")
+
+args = parser.parse_args()
+
+DEBUG = args.debug
+
+INPUT_FILE = args.input_file
+OUTPUT_FILE = args.o
+
 
 #######################
 # Step 1: load the file
