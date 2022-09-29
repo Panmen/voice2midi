@@ -1,0 +1,4 @@
+matplotlib==3.5.2
+mido==1.2.10
+numpy==1.23.1
+scipy==1.5.2
